@@ -25,10 +25,33 @@ class Home extends StatelessWidget {
           )
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(balance),
-            Text("$rs 73,000"),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("$rs 73,000", style: TextStyle(
+                    fontFamily: "Titillium Web Bold",
+                    fontSize: 32.0
+                ),),
+                Text(balance, style: TextStyle(
+                    fontSize: 18.0,
+                    fontFamily: "Titillium Web SemiBold"
+                ),),
+              ],
+            ),
 
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.ac_unit_sharp),
+                  Text("Transation"),
+                ],
+              ),
+            )
           ],
         ),
       ),
