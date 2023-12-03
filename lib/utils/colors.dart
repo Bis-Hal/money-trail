@@ -1,0 +1,1 @@
+const primaryColorHex = "#11D05E";
