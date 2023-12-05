@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:money_trail/screens/home_screen/widgets/indicator.dart';
 import 'package:money_trail/utils/dime.dart';
 
 import '../../../utils/strings.dart';

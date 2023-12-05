@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:money_trail/screens/home_screen/widgets/indicator.dart';
 import 'package:money_trail/screens/home_screen/widgets/trail_card.dart';
 import 'package:money_trail/screens/home_screen/widgets/transaction.dart';
@@ -13,7 +14,8 @@ class Home extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TrailCard(),
-        Indicator(),
+        Indicator(title: "Income", icon : FontAwesomeIcons.wallet,amount: "150,000"),
+        Indicator(title: "Expenses", icon: FontAwesomeIcons.wallet, amount:"30,000", color: Colors.red,),
         Padding(
           padding: const EdgeInsets.all(sm),
           child: Text(
