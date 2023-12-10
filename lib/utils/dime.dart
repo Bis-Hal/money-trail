@@ -1,1 +1,0 @@
-const double sm = 12.0;

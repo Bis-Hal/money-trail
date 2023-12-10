@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:money_trail/utils/dime.dart';
+import 'package:money_trail/utils/constant/dime.dart';
+import 'package:money_trail/utils/constant/image_path.dart';
+import 'package:money_trail/utils/styles/text_styles.dart';
 
-import '../../../utils/strings.dart';
+import '../../../utils/constant/strings_constant.dart';
 
 class TrailCard extends StatelessWidget {
   const TrailCard({Key? key}) : super(key: key);
@@ -9,41 +11,39 @@ class TrailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(sm),
       elevation: 5.0,
+      margin: const EdgeInsets.symmetric(vertical: DimeUtil.lg),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(DimeUtil.borderRadius),
       ),
       child: Container(
         width: double.infinity,
         height: 150.0,
-        padding: const EdgeInsets.all(sm),
+        padding: const EdgeInsets.all(DimeUtil.sm),
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/money.png"),
+                image: AssetImage(ImagePath.IMAGE_MONEY),
                 fit: BoxFit.contain,
-                alignment: Alignment.bottomRight
-            )
-        ),
+                alignment: Alignment.bottomRight)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("$rs 73,000", style: TextStyle(
-                    fontFamily: "Titillium Web Bold",
-                    fontSize: 32.0
-                ),),
-                Text(balance, style: TextStyle(
-                    fontSize: 18.0,
-                    fontFamily: "Titillium Web SemiBold"
-                ),),
+                Text("${StringConstant.RS} 73,000",
+                    style: StringUtilsStyle.getHeadingOne()),
+                Text(
+                  StringConstant.BALANCE,
+                  style: StringUtilsStyle.getHeadingFour()
+                ),
               ],
             ),
-
-            Text("The more you learn, the more you earn",style: TextStyle(fontSize: 12.0, fontFamily: "Titillium Web SemiBold"),)
+            Text(
+              StringConstant.SLOGON,
+              style: StringUtilsStyle.getHeadingSeven()
+            ),
           ],
         ),
       ),
