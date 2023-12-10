@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   infinite_carousel: ^1.0.3
+  fl_chart: ^0.65.0
 #  firebase_auth: ^4.7.1
 #  firebase_core: ^2.15.0
 #  cloud_firestore: ^4.8.3
