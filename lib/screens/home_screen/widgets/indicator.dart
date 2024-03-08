@@ -1,56 +1,43 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:money_trail/utils/constant/dime.dart';
 import 'package:money_trail/utils/styles/text_styles.dart';
 
 class Indicator extends StatelessWidget {
+
   final title;
-  final icon;
-  final amount;
+  final percentage;
   var color;
 
-  Indicator({ required this.title, required this.icon, required this.amount, this.color = Colors.green,Key? key})
-      : super(key: key);
+  Indicator(
+      {required this.title,
+      required this.percentage,
+      this.color = Colors.green,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.4,
-      margin: const EdgeInsets.symmetric(vertical: DimeUtil.xs),
-      padding: const EdgeInsets.all(DimeUtil.xs),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(DimeUtil.borderRadius),
-      ),
-      child:  Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(DimeUtil.sm),
-                child: FaIcon(
-                  icon,
-                  size: DimeUtil.xl,
-                  color: Colors.white,
-                ),
-              ),
-              Text(
-                title,
-                style: StringUtilsStyle.getHeadingFive(color: Colors.white)
-              ),
-            ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          color: color,
+          height: 70.0,
+          width: (percentage / 100)  * (MediaQuery.of(context).size.width - DimeUtil.xl) ,
+          child: const SizedBox(
+
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal:  DimeUtil.sm),
-            child: Text(
-              amount,
-              style: StringUtilsStyle.getHeadingSix(color: Colors.white)
-            ),
-          ),
-        ],
-      ),
+        ),
+        Text(
+          "$percentage %",
+          style: StringUtilsStyle.getCustomStyle(size: 28.0),
+        ),
+        Text(
+          title,
+          style: StringUtilsStyle.getCustomStyle(size: 12.0),
+        ),
+      ],
     );
   }
 }

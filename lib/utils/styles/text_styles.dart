@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:money_trail/utils/constant/font_constant.dart';
 
@@ -51,7 +49,7 @@ class StringUtilsStyle{
     return TextStyle(
         color: color,
         fontFamily: Font.regular,
-        fontSize: size
+        fontSize: size,
     );
   }
   static TextStyle getHeadingEight({color = Colors.black,size = 12.0}){
