@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:money_trail/model/model_transaction.dart';
-import 'package:money_trail/screens/expense_screen/AddExpenseController.dart';
-import 'package:money_trail/utils/constant/dime.dart';
-import 'package:money_trail/utils/styles/boder_style.dart';
-import 'package:money_trail/utils/styles/text_styles.dart';
+
+import '../../../model/model_transaction.dart';
+import '../../../utils/constant/dime.dart';
+import '../../../utils/styles/border_style.dart';
+import '../../../utils/styles/text_styles.dart';
+
 
 class FormItem extends StatelessWidget {
   FormItem({super.key, this.title, required this.icon, this.hint, required this.modelTransactionObj});

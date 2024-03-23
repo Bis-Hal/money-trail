@@ -1,4 +1,4 @@
-name: fowallet
+name: money_trail
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -46,10 +46,14 @@ dependencies:
   google_sign_in: ^6.2.1
   googleapis: ^12.0.0
   googleapis_auth: ^1.4.2
+  shared_preferences: ^2.2.2
+  floor: ^1.4.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  floor_generator: ^1.4.2
+  build_runner: ^2.1.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

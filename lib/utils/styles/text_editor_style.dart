@@ -22,18 +22,20 @@ class TextEditorStyle {
 
   InputDecoration getInputDecorator() {
     return InputDecoration(
-      errorStyle: StringUtilsStyle.getHeadingSeven(color: ColorsUtil.baseBlackColor),
+        errorStyle:
+            StringUtilsStyle.getHeadingSeven(color: ColorsUtil.baseBlackColor),
         suffixIcon: isObstructTextEnable
             ? GestureDetector(
                 onTap: () {
                   signUpController.setObstruct();
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: DimeUtil.sm, vertical: 18.0),
-                  child: FaIcon(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: DimeUtil.sm, vertical: 18.0),
+                  child: Icon(
                     signUpController.isObstruct
-                        ? FontAwesomeIcons.eye
-                        : FontAwesomeIcons.eyeSlash,
+                        ? Icons.remove_red_eye
+                        : Icons.remove_red_eye_outlined,
                     color: ColorsUtil.baseGreyColor,
                     size: DimeUtil.xl4,
                   ),
@@ -51,15 +53,28 @@ class TextEditorStyle {
             : null,
         label: Text(
           label,
-          style: StringUtilsStyle.getHeadingSeven(color: ColorsUtil.baseGreyColor),
+          style:
+              StringUtilsStyle.getHeadingSeven(color: ColorsUtil.baseGreyColor),
         ),
-        labelStyle: StringUtilsStyle.getHeadingSeven(color: ColorsUtil.primaryColor),
+        labelStyle:
+            StringUtilsStyle.getHeadingSeven(color: ColorsUtil.primaryColor),
         focusColor: ColorsUtil.primaryColor,
         border: OutlineInputBorder(
-            borderSide: const BorderSide(color: ColorsUtil.baseBlackColor, width: 2.0),
+            borderSide:
+                const BorderSide(color: ColorsUtil.baseBlackColor, width: 2.0),
             borderRadius: BorderRadius.circular(DimeUtil.borderRadius)),
         focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: ColorsUtil.primaryColor, width: 1.5),
+            borderSide:
+                const BorderSide(color: ColorsUtil.primaryColor, width: 1.5),
             borderRadius: BorderRadius.circular(DimeUtil.borderRadius)));
+  }
+
+  InputDecoration getBorderStyleNone() {
+    return InputDecoration(
+        hintText: label,
+        contentPadding: EdgeInsets.zero,
+        hintStyle: StringUtilsStyle.getCustomStyle(size: 40.0),
+        border: InputBorder.none,
+    );
   }
 }

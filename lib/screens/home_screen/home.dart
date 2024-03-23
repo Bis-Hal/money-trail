@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:money_trail/database/local/transaction/transaction_database.dart';
+import 'package:money_trail/database/local/transaction/transaction_entity.dart';
+import 'package:money_trail/model/credited.dart';
 import 'package:money_trail/screens/home_screen/widgets/indicator.dart';
 import 'package:money_trail/screens/home_screen/widgets/trail_card.dart';
-import 'package:money_trail/screens/home_screen/widgets/transaction.dart';
 import 'package:money_trail/screens/main_controller.dart';
-import 'package:money_trail/utils/constant/colors.dart';
-import 'package:money_trail/utils/constant/image_path.dart';
+import 'package:money_trail/services/google_mail.dart';
+import 'package:money_trail/services/google_services_util.dart';
 import 'package:money_trail/utils/constant/dime.dart';
 import 'package:money_trail/utils/constant/strings_constant.dart';
 import 'package:money_trail/utils/styles/text_styles.dart';
-
-import '../../api/google_mail.dart';
-import '../../model/model_transaction.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -27,78 +25,32 @@ class Home extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TrailCard(),
-          // ElevatedButton(onPressed: (){
-          //   EmailExtractor().extractEmail();
-          // }, child: const Text('Hello')),
-          // SizedBox(
-          //   width: double.infinity,
-          //   child: Row(
-          //   children: [
-          //     Indicator(
-          //       title: StringConstant.INCOME,
-          //       percentage: 30,
-          //       color: Colors.teal[800],
-          //     ),
-          //     Indicator(
-          //       title: StringConstant.INVESTMENT,
-          //       percentage: 10,
-          //       color: Colors.teal[50],
-          //     ),
-          //     // Indicator(
-          //     //   title: StringConstant.EXPENSES,
-          //     //   percentage: 60,
-          //     //   color: Colors.grey[200],
-          //     // ),
-          //   ],
-          //   ),
-          // ),
+          TrailCard(),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Indicator(title: "Clothes", icon: "assets/clothes.png"),
+                Indicator(title: "Food", icon: "assets/food.png"),
+                Indicator(title: "stationary", icon: "assets/stationary.png"),
+                Indicator(title: "Pathao Food", icon: "assets/pathao.png"),
+                Indicator(title: "Transportation", icon: "assets/bus.png"),
+                Indicator(title: "Mart", icon: "assets/mart.png"),
 
-          // Column(
-          //   children: [
-          //     Container(
-          //       margin: const EdgeInsets.all(1.0),
-          //       width: 30.0,
-          //       height: 10.0,
-          //       decoration: BoxDecoration(
-          //           color: Colors.yellow,
-          //           borderRadius: BorderRadius.circular(15.0),
-          //           border: Border.all(color: Colors.black)
-          //       ),
-          //     ),
-          //     Container(
-          //       margin: const EdgeInsets.all(1.0),
-          //       width: 30.0,
-          //       height: 10.0,
-          //       decoration: BoxDecoration(
-          //           color: Colors.yellow,
-          //           borderRadius: BorderRadius.circular(15.0),
-          //           border: Border.all(color: Colors.black)
-          //       ),
-          //     ),
-          //     Container(
-          //       margin: const EdgeInsets.all(1.0),
-          //       width: 30.0,
-          //       height: 10.0,
-          //       decoration: BoxDecoration(
-          //           color: Colors.yellow,
-          //           borderRadius: BorderRadius.circular(15.0),
-          //           border: Border.all(color: Colors.black)
-          //       ),
-          //     ),
-          //     Container(
-          //       margin: const EdgeInsets.all(1.0),
-          //       width: 30.0,
-          //       height: 10.0,
-          //       decoration: BoxDecoration(
-          //           color: Colors.yellow,
-          //           borderRadius: BorderRadius.circular(15.0),
-          //           border: Border.all(color: Colors.black)
-          //       ),
-          //     ),
+              ],
+            ),
+          ),
+          // ElevatedButton(onPressed: () async {
+          //   final database = await $FloorTransactionDataBase.databaseBuilder('app_database_db').build();
+          //   final transactionDao = database.transactionDAO;
+          //   final transaction = TransactionEntity(remarks: "Pizza", category: 1, type: "FOOD");
+          //   await transactionDao.setTransaction(transaction);
+          //   final result = await transactionDao.findAllTransaction();
+          //   for (var value in result) {
+          //     print(value.toString());
+          //   }
           //
-          //   ],
-          // ),
+          // }, child: Text("Add")),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: DimeUtil.lg),
             child: Row(
@@ -116,26 +68,25 @@ class Home extends StatelessWidget {
               ],
             ),
           ),
-          // Obx(
-          //   ()=> Expanded(
-          //       child: ListView.builder(
-          //     itemBuilder: (context, index) => Transaction(transaction: mainController.transactions[index],),
-          //     itemCount: mainController.transactions.length,
-          //     scrollDirection: Axis.vertical,
-          //   )),
-          // )
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: DimeUtil.xs),
-                child: Row(
-                  children: [
-                    Transform.rotate(angle:-0.8, child:Image.asset(ImagePath.IMAGE_TRAIL, color: Colors.black,width: 45.0, height: 45.0,)),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Expanded(
+            child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index)=>Container(
+                  margin: const EdgeInsets.symmetric(vertical: DimeUtil.sm),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(DimeUtil.xl)
+                            ),
+                            width: 4.0,
+                            height: 60.0,
+                            margin: const EdgeInsets.only(right:DimeUtil.md),
+                          ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -143,70 +94,29 @@ class Home extends StatelessWidget {
                               Text("Cash", style: StringUtilsStyle.getHeadingSeven(),),
                             ],
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text("Rs 10,000", style: StringUtilsStyle.getHeadingFour(color: Colors.redAccent),),
-                              Text("3 Feb, 2024"),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: DimeUtil.xl),
-                                    child: Text("128,996", style: StringUtilsStyle.getHeadingNine(),),
-                                  ),
-                                  Text("127,996", style: StringUtilsStyle.getHeadingNine(color: Colors.redAccent),),
-                                ],
-                              )
-                            ],
-                          ),
-
                         ],
                       ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: DimeUtil.xs),
-                child: Row(
-                  children: [
-                    Transform.rotate(angle:-0.8, child:Image.asset(ImagePath.IMAGE_TRAIL, color: Colors.black,width: 45.0, height: 45.0,)),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Text("Rs 10,000", style: StringUtilsStyle.getHeadingFour(color: Colors.redAccent),),
+                          Text("3 Feb, 2024"),
+                          Row(
                             children: [
-                              Text("Salary",  style: StringUtilsStyle.getHeadingFive(), ),
-                              Text("Bank", style: StringUtilsStyle.getHeadingSeven(),),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: DimeUtil.xl),
+                                child: Text("128,996", style: StringUtilsStyle.getHeadingNine(),),
+                              ),
+                              Text("127,996", style: StringUtilsStyle.getHeadingNine(color: Colors.redAccent),),
                             ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text("Rs 128,996", style: StringUtilsStyle.getHeadingFour(color: Colors.teal),),
-                              Text("2 Feb, 2024"),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: DimeUtil.xl),
-                                    child: Text("96", style: StringUtilsStyle.getHeadingNine(),),
-                                  ),
-                                  Text("128,996", style: StringUtilsStyle.getHeadingNine(color: Colors.teal),),
-                                ],
-                              )
-                            ],
-                          ),
-
+                          )
                         ],
                       ),
-                    )
-                  ],
-                ),
-              ),
-            ],
+                    ],
+                  ),
+                )),
           )
+
         ],
         
       ),

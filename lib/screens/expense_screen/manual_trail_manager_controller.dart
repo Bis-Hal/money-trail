@@ -1,8 +1,11 @@
+import 'package:get/get.dart';
 import 'package:money_trail/database/collections.dart';
 import 'package:money_trail/model/model_transaction.dart';
 import 'package:money_trail/screens/home_screen/widgets/transaction.dart';
 
-class AddExpenseController {
+class ManualTrailManagerController {
+  final RxInt _infiniteCarouselIndex = 0.obs;
+
   String title = "NULL";
   String type = "NULL";
   String extra01 = "0";
@@ -11,6 +14,13 @@ class AddExpenseController {
   String extra04 = "0";
   String extra05 = "0";
   int id = 1;
+
+
+   int get infiniteCarouselIndex => _infiniteCarouselIndex.value;
+
+  set infiniteCarouselIndex(int value) {
+    _infiniteCarouselIndex.value = value;
+  }
 
   ModelTransaction transaction = ModelTransaction.nonParameterized();
 

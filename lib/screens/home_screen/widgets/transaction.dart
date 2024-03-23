@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:money_trail/model/model_transaction.dart';
+import 'package:money_trail/utils/constant/colors.dart';
 import 'package:money_trail/utils/constant/dime.dart';
+import 'package:money_trail/utils/styles/text_editor_style.dart';
 import 'package:money_trail/utils/styles/text_styles.dart';
 
 class Transaction extends StatelessWidget {
@@ -11,7 +13,7 @@ class Transaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var color = transaction.amount != null ? Colors.teal : Colors.redAccent;
+    var color = transaction.amount != null ? ColorsUtil.primaryColor : Colors.redAccent;
     return Card(
       color: Colors.white,
       elevation: 0.0,
@@ -20,7 +22,14 @@ class Transaction extends StatelessWidget {
         children: [
           Row(
             children: [
-              FaIcon(FontAwesomeIcons.shopify, size: 32.0, color: color,),
+              Container(
+                decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: BorderRadius.circular(DimeUtil.xl)
+                ),
+                width: 4.0,
+                height: 40.0,
+              ),
               Padding(
                 padding: const EdgeInsets.all(DimeUtil.sm),
                 child: Column(

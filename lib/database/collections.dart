@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:money_trail/database/firebase_config.dart';
+
+import 'firebase_config.dart';
 
 class FirebaseCollections {
   FirebaseFirestore instance = FirebaseFirestore.instance;

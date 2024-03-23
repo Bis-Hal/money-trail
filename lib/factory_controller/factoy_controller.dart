@@ -1,4 +1,5 @@
-import 'package:money_trail/model/model_transaction.dart';
+
+import '../model/model_transaction.dart';
 
 mixin FactoryController{
   ModelTransaction mapDocumentToModelTransaction(var document) {

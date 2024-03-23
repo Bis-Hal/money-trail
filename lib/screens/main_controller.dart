@@ -3,12 +3,20 @@ import 'package:money_trail/database/collections.dart';
 import 'package:money_trail/model/model_transaction.dart';
 
 import '../factory_controller/factoy_controller.dart';
+import '../model/credited.dart';
 
 class MainController extends GetxController with FactoryController {
   final RxInt _currentIndex = 0.obs;
   final RxBool _loggedIn = false.obs;
   RxList transactions = [].obs;
 
+  static String username = "Anonymous";
+  static String photoUrl = "assets/trail.png";
+
+  RxList credits = [].obs;
+  RxInt value = 0.obs;
+
+  static String email = "";
 
   bool get isLoggedIn => _loggedIn.value;
 
@@ -33,18 +41,16 @@ class MainController extends GetxController with FactoryController {
         .transactionCollection
         .snapshots()
         .forEach((document) {
-      transactions.addAll(
-          document.docs.map((e) =>
-              ModelTransaction(
-                  title: e["title"],
-                  amount: e["amount"],
-                  extra01: e["extra01"],
-                  extra02: e["extra02"],
-                  extra03: e["extra03"],
-                  extra04: e["extra04"],
-                  extra05: e["extra05"],
-                  type: e["type"],
-                  date: e["date"])));
+      transactions.addAll(document.docs.map((e) => ModelTransaction(
+          title: e["title"],
+          amount: e["amount"],
+          extra01: e["extra01"],
+          extra02: e["extra02"],
+          extra03: e["extra03"],
+          extra04: e["extra04"],
+          extra05: e["extra05"],
+          type: e["type"],
+          date: e["date"])));
     });
 
     await FirebaseCollections("User1")
@@ -52,12 +58,9 @@ class MainController extends GetxController with FactoryController {
         .snapshots()
         .forEach((snapshots) {
       if (!transactions.contains(snapshots)) {
-        transactions.addAll(
-            snapshots.docs.map((document) =>
-                mapDocumentToModelTransaction(document)));
+        transactions.addAll(snapshots.docs
+            .map((document) => mapDocumentToModelTransaction(document)));
       }
     });
   }
 }
-
-

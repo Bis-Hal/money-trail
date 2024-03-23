@@ -10,6 +10,9 @@ class TransactionController extends GetxController with FactoryController{
   Map<String, List<ModelTransaction>> get transactionsByDates => _transactionsByDates;
 
   Future<void> setTransactionsByDates() async {
+    if (transactionsByDates.isNotEmpty){
+      transactionsByDates.clear();
+    }
     await FirebaseCollections("User1")
         .transactionCollection
         .snapshots()

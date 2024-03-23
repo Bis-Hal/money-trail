@@ -9,8 +9,8 @@ static const double xl2 = 20.0;
 static const double xl3 = 22.0;
 static const double xl4 = 24.0;
 static const double xl5 = 28.0;
-static const double xl6 = 30.0;
-static const double xl7 = 32.0;
+static const double xl6 = 32.0;
+static const double xl7 = 48.0;
 
 
 //  Radius

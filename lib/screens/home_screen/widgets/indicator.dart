@@ -6,38 +6,27 @@ import 'package:money_trail/utils/styles/text_styles.dart';
 
 class Indicator extends StatelessWidget {
 
-  final title;
-  final percentage;
-  var color;
+  final String title;
+  final String icon;
 
-  Indicator(
-      {required this.title,
-      required this.percentage,
-      this.color = Colors.green,
+  const Indicator(
+      {required this.title, required this.icon,
       super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          color: color,
-          height: 70.0,
-          width: (percentage / 100)  * (MediaQuery.of(context).size.width - DimeUtil.xl) ,
-          child: const SizedBox(
-
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: DimeUtil.md , horizontal: DimeUtil.sm),
+      child: Column(
+        children: [
+          Text("70%", style: StringUtilsStyle.getHeadingSeven(),),
+          Padding(
+            padding: const EdgeInsets.all(DimeUtil.xs),
+            child: Image.asset(icon, width: 35.0, height: 35.0,),
           ),
-        ),
-        Text(
-          "$percentage %",
-          style: StringUtilsStyle.getCustomStyle(size: 28.0),
-        ),
-        Text(
-          title,
-          style: StringUtilsStyle.getCustomStyle(size: 12.0),
-        ),
-      ],
+          Text(title, style: StringUtilsStyle.getHeadingSeven(),)
+        ],
+      ),
     );
   }
 }
